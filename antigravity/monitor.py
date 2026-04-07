@@ -114,8 +114,8 @@ class BlockchainMonitor:
     ) -> list:
         """Fetch OrderFilled events from a contract in a block range."""
         event_filter = contract.events.OrderFilled.create_filter(
-            fromBlock=from_block,
-            toBlock=to_block,
+            from_block=from_block,
+            to_block=to_block,
         )
         return event_filter.get_all_entries()
 
