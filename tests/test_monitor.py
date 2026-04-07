@@ -5,11 +5,8 @@ class FakeOrderFilled:
     def __init__(self):
         self.kwargs = None
 
-    def create_filter(self, **kwargs):
+    def get_logs(self, **kwargs):
         self.kwargs = kwargs
-        return self
-
-    def get_all_entries(self):
         return ["event"]
 
 
@@ -44,7 +41,7 @@ def test_trade_signal_string_redacts_long_identifiers():
     assert "tx=0xabcdef12345678..." in rendered
 
 
-def test_get_events_uses_web3_snake_case_filter_args():
+def test_get_events_uses_web3_get_logs_with_snake_case_args():
     from antigravity.monitor import BlockchainMonitor
 
     monitor = BlockchainMonitor.__new__(BlockchainMonitor)

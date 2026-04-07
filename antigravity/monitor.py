@@ -113,11 +113,10 @@ class BlockchainMonitor:
         self, contract: Contract, from_block: int, to_block: int
     ) -> list:
         """Fetch OrderFilled events from a contract in a block range."""
-        event_filter = contract.events.OrderFilled.create_filter(
+        return contract.events.OrderFilled.get_logs(
             from_block=from_block,
             to_block=to_block,
         )
-        return event_filter.get_all_entries()
 
     def _parse_trade(self, event, exchange_name: str) -> Optional[TradeSignal]:
         """
